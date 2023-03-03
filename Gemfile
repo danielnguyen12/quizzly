@@ -77,3 +77,7 @@ end
 gem 'simple_form'
 
 gem 'devise'
+
+gem 'omniauth'
+gem "omniauth-rails_csrf_protection"
+gem 'omniauth-google-oauth2'
