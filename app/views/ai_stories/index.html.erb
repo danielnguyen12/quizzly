@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ai stories</h1>
+
+<div id="ai_stories">
+  <% @ai_stories.each do |ai_story| %>
+    <%= render ai_story %>
+    <p>
+      <%= link_to "Show this ai story", ai_story %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ai story", new_ai_story_path %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @ai_story %>
+
+<div>
+  <%= link_to "Edit this ai story", edit_ai_story_path(@ai_story) %> |
+  <%= link_to "Back to ai stories", ai_stories_path %>
+
+  <%= button_to "Destroy this ai story", @ai_story, method: :delete %>
+</div>
