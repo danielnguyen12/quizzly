@@ -31,13 +31,17 @@ class AiStoriesController < ApplicationController
 
   #   if response.success?
   #     puts response.dig("choices", 0, "message", "content")
-  #     @response_content = response.dig("choices", 0, "message", "content")
-  #     @ai_story = AiStory.new(user: current_user, prompt: prompt, response: @response_content)
+  #     response_content = response.dig("choices", 0, "message", "content")
+  #     @ai_story = AiStory.new(user: current_user, prompt: prompt, response: response_content)
 
-  #     if @ai_story.save
-  #       redirect_to ai_stories_path, notice: 'AI Story was successfully created.'
-  #     else
-  #       render :new, notice: :unprocessable_entity
+  #     respond_to do |format|
+  #       if @ai_story.save
+  #         format.html { redirect_to ai_story_url(@ai_story), notice: "Ai story was successfully generated." }
+  #         format.json { render :show, status: :ok, location: @ai_story }
+  #       else
+  #         format.html { render :edit, status: :unprocessable_entity }
+  #         format.json { render json: @ai_story.errors, status: :unprocessable_entity }
+  #       end
   #     end
   #   else
   #     error_message = response.body["message"]
@@ -47,19 +51,17 @@ class AiStoriesController < ApplicationController
 
   def create # for testing without charges
     prompt = ai_story_params[:prompt]
+    response_content = 'This is filler text.'
+    @ai_story = AiStory.new(user: current_user, prompt: prompt, response: response_content)
 
-    if prompt
-      @response_content = 'This is filler text.'
-      @ai_story = AiStory.new(user: current_user, prompt: prompt, response: @response_content)
-
+    respond_to do |format|
       if @ai_story.save
-        redirect_to ai_stories_path, notice: 'AI Story was successfully created.'
+        format.html { redirect_to ai_story_url(@ai_story), notice: "Ai story was successfully generated." }
+        format.json { render :show, status: :ok, location: @ai_story }
       else
-        render :new, notice: :unprocessable_entity
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @ai_story.errors, status: :unprocessable_entity }
       end
-    else
-      error_message = response.body["message"]
-      redirect_to new_ai_story_path, alert: "Failed to generate story: #{error_message}"
     end
   end
 
