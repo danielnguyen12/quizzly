@@ -20,17 +20,46 @@ class AiStoriesController < ApplicationController
   end
 
   # POST /ai_stories or /ai_stories.json
-  def create
-    @ai_story = AiStory.new(ai_story_params)
+  # def create
+  #   client = OpenAI::Client.new
+  #   prompt = ai_story_params[:prompt]
+  #   response = client.chat(
+  #     parameters: {
+  #         model: "gpt-3.5-turbo",
+  #         messages: [{ role: "user", content: prompt}],
+  #     })
 
-    respond_to do |format|
+  #   if response.success?
+  #     puts response.dig("choices", 0, "message", "content")
+  #     @response_content = response.dig("choices", 0, "message", "content")
+  #     @ai_story = AiStory.new(user: current_user, prompt: prompt, response: @response_content)
+
+  #     if @ai_story.save
+  #       redirect_to ai_stories_path, notice: 'AI Story was successfully created.'
+  #     else
+  #       render :new, notice: :unprocessable_entity
+  #     end
+  #   else
+  #     error_message = response.body["message"]
+  #     redirect_to new_ai_story_path, alert: "Failed to generate story: #{error_message}"
+  #   end
+  # end
+
+  def create # for testing without charges
+    prompt = ai_story_params[:prompt]
+
+    if prompt
+      @response_content = 'This is filler text.'
+      @ai_story = AiStory.new(user: current_user, prompt: prompt, response: @response_content)
+
       if @ai_story.save
-        format.html { redirect_to ai_story_url(@ai_story), notice: "Ai story was successfully created." }
-        format.json { render :show, status: :created, location: @ai_story }
+        redirect_to ai_stories_path, notice: 'AI Story was successfully created.'
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ai_story.errors, status: :unprocessable_entity }
+        render :new, notice: :unprocessable_entity
       end
+    else
+      error_message = response.body["message"]
+      redirect_to new_ai_story_path, alert: "Failed to generate story: #{error_message}"
     end
   end
 
