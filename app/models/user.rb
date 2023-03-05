@@ -20,4 +20,6 @@ class User < ApplicationRecord
     end
     user
   end
+
+  has_many :ai_stories
 end
