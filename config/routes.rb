@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   get 'about', to: 'home#about'
 
-  resources :ai_stories
+  resources :quizzes
+  # resources :ai_stories
 
   root "home#index"
 end

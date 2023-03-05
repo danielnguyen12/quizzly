@@ -21,5 +21,6 @@ class User < ApplicationRecord
     user
   end
 
+  has_many :quizzes
   has_many :ai_stories
 end
