@@ -81,3 +81,5 @@ gem 'devise'
 gem 'omniauth'
 gem "omniauth-rails_csrf_protection"
 gem 'omniauth-google-oauth2'
+
+gem 'ruby-openai'
