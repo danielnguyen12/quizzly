@@ -29,7 +29,7 @@ class QuizzesController < ApplicationController
       format: #{quiz_params[:format]},
       number of questions: #{quiz_params[:length]}
     "
-    response_content = '{
+    response_content = {
       title: "Geography Quiz",
       description: "Test your knowledge of world geography",
       questions: [
@@ -57,7 +57,7 @@ class QuizzesController < ApplicationController
           correctAnswer: "1939-09-01"
         }
       ]
-    }'
+    }
     @quiz = Quiz.new(
       user: current_user,
       subject: quiz_params[:subject],
