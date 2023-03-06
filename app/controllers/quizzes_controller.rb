@@ -20,6 +20,67 @@ class QuizzesController < ApplicationController
   end
 
   # POST /quizzes or /quizzes.json
+  # def create
+  #   client = OpenAI::Client.new
+  #   prompt = "Create a quiz based on these parameters:
+  #     subject: #{quiz_params[:subject]},
+  #     topic: #{quiz_params[:topic]},
+  #     grade level: #{quiz_params[:level]},
+  #     objectives: #{quiz_params[:objectives]},
+  #     format: #{quiz_params[:format]},
+  #     number of questions: #{quiz_params[:length]}
+  #   "
+  #   response = client.chat(
+  #     parameters: {
+  #         model: "gpt-3.5-turbo",
+  #         messages: [
+  #           { role: "system", content: 'You are a quiz generator. Each quiz object should be structured like this:
+  #             {
+  #               title: "",
+  #               description: "",
+  #               questions: [
+  #                 {
+  #                   type: "multiple-choice",
+  #                   question: "",
+  #                   choices: [""],
+  #                   correctAnswer: ""
+  #                 }
+  #               ]
+  #             }'},
+  #           { role: "user", content: prompt}
+  #         ]
+  #     })
+
+  #   if response.success?
+  #     puts response.dig("choices", 0, "message", "content")
+  #     response_content = response.dig("choices", 0, "message", "content")
+  #     @quiz = Quiz.new(
+  #       user: current_user,
+  #       subject: quiz_params[:subject],
+  #       topic: quiz_params[:topic],
+  #       level: quiz_params[:level],
+  #       objectives: quiz_params[:objectives],
+  #       format: quiz_params[:format],
+  #       length: quiz_params[:length],
+  #       prompt: prompt,
+  #       response: response_content
+  #       )
+
+  #     respond_to do |format|
+  #       if @quiz.save
+  #         format.html { redirect_to quiz_url(@quiz), notice: "Quiz was successfully generated." }
+  #         format.json { render :show, status: :ok, location: @quiz }
+  #       else
+  #         format.html { render :new, status: :unprocessable_entity }
+  #         format.json { render json: @quiz.errors, status: :unprocessable_entity }
+  #       end
+  #     end
+  #   else
+  #     error_message = response.body["message"]
+  #     redirect_to new_quiz_path, alert: "Failed to generate quiz: #{error_message}"
+  #   end
+  # end
+
   def create
     prompt = "Create a quiz based on these parameters:
       subject: #{quiz_params[:subject]},
