@@ -1,10 +1,5 @@
 <div id="<%= dom_id quiz %>">
   <p>
-    <strong>User:</strong>
-    <%= quiz.user_id %>
-  </p>
-
-  <p>
     <strong>Subject:</strong>
     <%= quiz.subject %>
   </p>
@@ -15,23 +10,12 @@
   </p>
 
   <p>
-    <strong>Level:</strong>
+    <strong>Grade Level:</strong>
     <%= quiz.level %>
   </p>
 
   <p>
-    <strong>Objectives:</strong>
-    <%= quiz.objectives %>
-  </p>
-
-  <p>
-    <strong>Format:</strong>
-    <%= quiz.format %>
-  </p>
-
-  <p>
-    <strong>Length:</strong>
-    <%= quiz.length %>
+    <%= quiz.response %>
   </p>
 
 </div>

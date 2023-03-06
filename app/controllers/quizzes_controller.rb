@@ -21,7 +21,54 @@ class QuizzesController < ApplicationController
 
   # POST /quizzes or /quizzes.json
   def create
-    @quiz = Quiz.new(quiz_params)
+    prompt = "Create a quiz based on these parameters:
+      subject: #{quiz_params[:subject]},
+      topic: #{quiz_params[:topic]},
+      grade level: #{quiz_params[:level]},
+      objectives: #{quiz_params[:objectives]},
+      format: #{quiz_params[:format]},
+      number of questions: #{quiz_params[:length]}
+    "
+    response_content = '{
+      title: "Geography Quiz",
+      description: "Test your knowledge of world geography",
+      questions: [
+        {
+          type: "multiple-choice",
+          question: "What is the capital of France?",
+          choices: ["London", "Paris", "Rome", "Berlin"],
+          correctAnswer: "Paris"
+        },
+        {
+          type: "checkbox",
+          question: "Which of the following are continents?",
+          choices: ["Africa", "India", "South America", "Russia", "Europe"],
+          correctAnswer: ["Africa", "South America", "Europe"]
+        },
+        {
+          type: "grid",
+          question: "Rate your familiarity with the following languages",
+          rows: ["Spanish", "Mandarin", "Arabic"],
+          columns: ["Never heard of it", "Familiar", "Fluent"]
+        },
+        {
+          type: "date",
+          question: "When did World War II begin?",
+          correctAnswer: "1939-09-01"
+        }
+      ]
+    }'
+    @quiz = Quiz.new(
+      user: current_user,
+      subject: quiz_params[:subject],
+      topic: quiz_params[:topic],
+      level: quiz_params[:level],
+      objectives: quiz_params[:objectives],
+      format: quiz_params[:format],
+      length: quiz_params[:length],
+      prompt: prompt,
+      response: response_content
+      )
 
     respond_to do |format|
       if @quiz.save
@@ -65,6 +112,6 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.require(:quiz).permit(:user_id, :subject, :topic, :level, :objectives, :format, :length)
+      params.require(:quiz).permit(:subject, :topic, :level, :objectives, :format, :length)
     end
 end

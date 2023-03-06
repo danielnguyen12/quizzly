@@ -39,7 +39,7 @@ class AiStoriesController < ApplicationController
   #         format.html { redirect_to ai_story_url(@ai_story), notice: "Ai story was successfully generated." }
   #         format.json { render :show, status: :ok, location: @ai_story }
   #       else
-  #         format.html { render :edit, status: :unprocessable_entity }
+  #         format.html { render :new, status: :unprocessable_entity }
   #         format.json { render json: @ai_story.errors, status: :unprocessable_entity }
   #       end
   #     end
@@ -59,7 +59,7 @@ class AiStoriesController < ApplicationController
         format.html { redirect_to ai_story_url(@ai_story), notice: "Ai story was successfully generated." }
         format.json { render :show, status: :ok, location: @ai_story }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ai_story.errors, status: :unprocessable_entity }
       end
     end
