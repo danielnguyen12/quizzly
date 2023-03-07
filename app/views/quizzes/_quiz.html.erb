@@ -1,21 +1,20 @@
 <div id="<%= dom_id quiz %>">
-  <p>
-    <strong>Subject:</strong>
-    <%= quiz.subject %>
-  </p>
-
-  <p>
-    <strong>Topic:</strong>
-    <%= quiz.topic %>
-  </p>
-
-  <p>
-    <strong>Grade Level:</strong>
-    <%= quiz.level %>
-  </p>
-
-  <p>
-    <%= quiz.response %>
-  </p>
-
+  <h2><%= quiz.response['title'] %></h2>
+  <p><%= quiz.response['description'] %></p>
+  <ol>
+    <% quiz.response['questions'].each do |question| %>
+      <li>
+        <h3><%= question['question'] %></h3>
+        <% if question['choices'] %>
+          <ul class='list-unstyled'>
+            <% question['choices'].each do |choice| %>
+              <li><input type="radio"><%= choice %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <input type="text">
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
 </div>
