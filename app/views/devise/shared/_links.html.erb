@@ -19,7 +19,9 @@
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>
+  <hr class="my-4">
+  <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
+    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class:'w-100 py-2 mb-2 btn btn-outline-secondary rounded-3' %><br />
   <% end %>
 <% end %>
