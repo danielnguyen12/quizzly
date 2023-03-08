@@ -1,3 +1,5 @@
+require 'json'
+
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_quiz, only: %i[ show edit update destroy ]
@@ -22,64 +24,67 @@ class QuizzesController < ApplicationController
 
   # POST /quizzes or /quizzes.json
   # def create
-  #   client = OpenAI::Client.new
-  #   prompt = "Create a quiz based on these parameters:
-  #     subject: #{quiz_params[:subject]},
-  #     topic: #{quiz_params[:topic]},
-  #     grade level: #{quiz_params[:level]},
-  #     objectives: #{quiz_params[:objectives]},
-  #     format: #{quiz_params[:format]},
-  #     number of questions: #{quiz_params[:length]}
-  #   "
-  #   response = client.chat(
-  #     parameters: {
-  #         model: "gpt-3.5-turbo",
-  #         messages: [
-  #           { role: "system", content: 'You are a quiz generator. Each quiz object should be structured like this:
-  #             {
-  #               title: "",
-  #               description: "",
-  #               questions: [
-  #                 {
-  #                   type: "multiple-choice",
-  #                   question: "",
-  #                   choices: [""],
-  #                   correctAnswer: ""
-  #                 }
-  #               ]
-  #             }'},
-  #           { role: "user", content: prompt}
-  #         ]
-  #     })
+    # prompt = "Create a quiz based on these parameters:
+    #   subject: #{quiz_params[:subject]},
+    #   topic: #{quiz_params[:topic]},
+    #   grade level: #{quiz_params[:level]},
+    #   difficulty: #{quiz_params[:difficulty]},
+    #   objectives: #{quiz_params[:objectives]},
+    #   format: #{quiz_params[:format]},
+    #   number of questions: #{quiz_params[:length]}
+    # "
 
-  #   if response.success?
-  #     puts response.dig("choices", 0, "message", "content")
-  #     response_content = response.dig("choices", 0, "message", "content")
-  #     @quiz = Quiz.new(
-  #       user: current_user,
-  #       subject: quiz_params[:subject],
-  #       topic: quiz_params[:topic],
-  #       level: quiz_params[:level],
-  #       objectives: quiz_params[:objectives],
-  #       format: quiz_params[:format],
-  #       length: quiz_params[:length],
-  #       prompt: prompt,
-  #       response: response_content
-  #       )
+    # client = OpenAI::Client.new
+    # response = client.chat(
+    #   parameters: {
+    #       model: "gpt-3.5-turbo",
+    #       messages: [
+    #         { role: "system", content: 'You are a quiz generator. Based on user input, return only an object in JSON syntax with this structure (do not include any other extra text):
+    #           {
+    #             title: "",
+    #             description: "",
+    #             questions: [
+    #               {
+    #                 type: "",
+    #                 question: "",
+    #                 choices: [""],
+    #                 correctAnswer: ""
+    #               }
+    #             ]
+    #           }'},
+    #         { role: "user", content: prompt}
+    #       ]
+    #   })
 
-  #     respond_to do |format|
-  #       if @quiz.save
-  #         format.html { redirect_to quiz_url(@quiz), notice: "Quiz was successfully generated." }
-  #         format.json { render :show, status: :ok, location: @quiz }
-  #       else
-  #         format.html { render :new, status: :unprocessable_entity }
-  #         format.json { render json: @quiz.errors, status: :unprocessable_entity }
-  #       end
-  #     end
-  #   else
-  #     error_message = response.body["message"]
-  #     redirect_to new_quiz_path, alert: "Failed to generate quiz: #{error_message}"
-  #   end
+    # if response.success?
+    #   puts response.dig("choices", 0, "message", "content")
+    #   response_content = response.dig("choices", 0, "message", "content")
+    #   @quiz = Quiz.new(
+    #     user: current_user,
+    #     subject: quiz_params[:subject],
+    #     topic: quiz_params[:topic],
+    #     level: quiz_params[:level],
+    #     difficulty: quiz_params[:difficulty],
+    #     objectives: quiz_params[:objectives],
+    #     format: quiz_params[:format],
+    #     numberOfQuestions: quiz_params[:length],
+    #     prompt: prompt,
+    #     response: response_content
+    #     )
+
+    #   respond_to do |format|
+    #     if @quiz.save
+    #       format.html { redirect_to quiz_url(@quiz), notice: "Quiz was successfully generated." }
+    #       format.json { render :show, status: :ok, location: @quiz }
+    #     else
+    #       format.html { render :new, status: :unprocessable_entity }
+    #       format.json { render json: @quiz.errors, status: :unprocessable_entity }
+    #     end
+    #   end
+    # else
+    #   error_message = response.body["message"]
+    #   redirect_to new_quiz_path, alert: "Failed to generate quiz: #{error_message}"
+    # end
   # end
 
   def create
@@ -87,9 +92,10 @@ class QuizzesController < ApplicationController
       subject: #{quiz_params[:subject]},
       topic: #{quiz_params[:topic]},
       grade level: #{quiz_params[:level]},
+      difficulty: #{quiz_params[:difficulty]},
       objectives: #{quiz_params[:objectives]},
       format: #{quiz_params[:format]},
-      number of questions: #{quiz_params[:length]}
+      numberOfQuestions: #{quiz_params[:length]}
     "
     response_content = {
       title: "Geography Quiz",
@@ -174,6 +180,6 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.require(:quiz).permit(:subject, :topic, :level, :objectives, :format, :length)
+      params.require(:quiz).permit(:subject, :topic, :level, :objectives, :format, :length, :difficulty)
     end
 end
