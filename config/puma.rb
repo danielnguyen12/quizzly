@@ -15,7 +15,11 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-port ENV.fetch("PORT") { 3000 }
+new_port = 3000
+while system("lsof -i:#{new_port}")
+  new_port += 1
+end
+port ENV.fetch("PORT") { new_port }
 
 # Specifies the `environment` that Puma will run in.
 #
