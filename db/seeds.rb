@@ -6,119 +6,184 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# quizzes = Quiz.create([
-#   {
-#     user_id: 1,
-#     subject: 'Math',
-#     length: 5,
-#     level: 10,
-#     response: {
-#       title: "Math Quiz",
-#       description: "Test your math skills with these five questions.",
-#       questions: [
-#         {
-#           type: "multiple-choice",
-#           question: "What is the square root of 16?",
-#           choices: ["2", "4", "8", "16"],
-#           correctAnswer: "4"
-#         },
-#         {
-#           type: "fill-in-the-blank",
-#           question: "What is the value of x if 3x + 4 = 13?",
-#           correctAnswer: "3"
-#         },
-#         {
-#           type: "true-false",
-#           question: "Is 0 a prime number?",
-#           correctAnswer: "false"
-#         },
-#         {
-#           type: "multiple-choice",
-#           question: "What is the value of pi (π) rounded to two decimal places?",
-#           choices: ["3.14", "3.141", "3.1415", "3.14159"],
-#           correctAnswer: "3.14"
-#         },
-#         {
-#           type: "fill-in-the-blank",
-#           question: "What is the slope of the line y = 2x + 3?",
-#           correctAnswer: "2"
-#         }
-#       ]
-#     }
-#   },
-#   {
-#     user_id: 1,
-#     subject: 'Science',
-#     length: 5,
-#     level: 11,
-#     response: {
-#       title: "Science Quiz",
-#       description: "Test your knowledge of science with these five questions.",
-#       questions: [
-#         {
-#           type: "multiple-choice",
-#           question: "What is the smallest unit of life?",
-#           choices: ["Cell", "Atom", "Molecule", "Organ"],
-#           correctAnswer: "Cell"
-#         },
-#         {
-#           type: "true-false",
-#           question: "The sun is a planet.",
-#           correctAnswer: "false"
-#         },
-#         {
-#           type: "multiple-choice",
-#           question: "What type of energy is stored in a battery?",
-#           choices: ["Chemical", "Nuclear", "Solar", "Wind"],
-#           correctAnswer: "Chemical"
-#         },
-#         {
-#           type: "fill-in-the-blank",
-#           question: "What is the process by which plants use sunlight to make food?",
-#           correctAnswer: "Photosynthesis"
-#         },
-#         {
-#           type: "multiple-choice",
-#           question: "What is the largest organ in the human body?",
-#           choices: ["Liver", "Skin", "Heart", "Brain"],
-#           correctAnswer: "Skin"
-#         }
-#       ]
-#     }
+Quiz.create(
+  user_id: 1,
+  subject: 'Geography',
+  length: 5,
+  level: 10,
+  response: {
+    "title": "Geography Quiz",
+    "description": "Test your knowledge of world geography",
+    "questions": [
+    {
+    "type": "multiple-choice",
+    "question": "What is the capital of France?",
+    "choices": [
+    "London",
+    "Paris",
+    "Rome",
+    "Berlin"
+    ],
+    "correctAnswer": "Paris"
+    },
+    {
+    "type": "checkbox",
+    "question": "Which of the following are continents?",
+    "choices": [
+    "Africa",
+    "India",
+    "South America",
+    "Russia",
+    "Europe"
+    ],
+    "correctAnswer": [
+    "Africa",
+    "South America",
+    "Europe"
+    ]
+    },
+    {
+    "type": "grid",
+    "question": "Rate your familiarity with the following languages",
+    "rows": [
+    "Spanish",
+    "Mandarin",
+    "Arabic"
+    ],
+    "columns": [
+    "Never heard of it",
+    "Familiar",
+    "Fluent"
+    ]
+    },
+    {
+    "type": "date",
+    "question": "When did World War II begin?",
+    "correctAnswer": "1939-09-01"
+    }
+    ]
+    }
+  )
 
-#   },
-#   {
-#     user_id: 1,
-#     subject: 'Geography',
-#     length: 4,
-#     level: 9,
-#     response: {
-#       title: "Geography Quiz",
-#       description: "Test your knowledge of geography with these five questions.",
-#       questions: [
-#         {
-#           type: "multiple-choice",
-#           question: "What is the capital of Australia?",
-#           choices: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
-#           correctAnswer: "Canberra"
-#         },
-#         {
-#           type: "true-false",
-#           question: "The Amazon River is the longest river in the world.",
-#           correctAnswer: "false"
-#         },
-#         {
-#           type: "multiple-choice",
-#           question: "What is the highest mountain in Africa?",
-#           choices: ["Kilimanjaro", "Mount Everest", "Mount Kenya", "Mount Meru"],
-#           correctAnswer: "Kilimanjaro"
-#         },
-#         {
-#           type: "fill-in-the-blank",
-#           question: "What is the largest country by land area?",
-#           correctAnswer: "Russia"
-#         }
-#       ]
-#     }
-#   },
-# ])
+Quiz.create(
+  user_id: 1,
+  subject: 'Math',
+  length: 5,
+  level: 10,
+  response: {
+    "title": "Mathematics Quiz",
+    "description": "Test your knowledge of mathematics",
+    "questions": [
+      {
+        "type": "multiple-choice",
+        "question": "What is the value of pi (π)?",
+        "choices": [
+          "3.14",
+          "3.141",
+          "3.1415",
+          "3.14159"
+        ],
+        "correctAnswer": "3.14159"
+      },
+      {
+        "type": "checkbox",
+        "question": "Which of the following are prime numbers?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "correctAnswer": [
+          "2",
+          "3",
+          "5",
+          "7"
+        ]
+      },
+      {
+        "type": "grid",
+        "question": "Rate your familiarity with the following mathematical concepts",
+        "rows": [
+          "Algebra",
+          "Geometry",
+          "Calculus"
+        ],
+        "columns": [
+          "Never heard of it",
+          "Familiar",
+          "Expert"
+        ]
+      },
+      {
+        "type": "date",
+        "question": "When was Isaac Newton born?",
+        "correctAnswer": "1642-01-04"
+      }
+    ]
+    }
+  )
+  
+Quiz.create(
+  user_id: 1,
+  subject: 'History',
+  length: 5,
+  level: 10,
+  response: {
+    "title": "History Quiz",
+    "description": "Test your knowledge of world history",
+    "questions": [
+      {
+        "type": "multiple-choice",
+        "question": "Who was the first president of the United States?",
+        "choices": [
+          "George Washington",
+          "Thomas Jefferson",
+          "Abraham Lincoln",
+          "John Adams"
+        ],
+        "correctAnswer": "George Washington"
+      },
+      {
+        "type": "checkbox",
+        "question": "Which of the following were involved in World War I?",
+        "choices": [
+          "United States",
+          "Germany",
+          "France",
+          "Russia",
+          "Japan"
+        ],
+        "correctAnswer": [
+          "Germany",
+          "France",
+          "Russia"
+        ]
+      },
+      {
+        "type": "grid",
+        "question": "Rate your knowledge of the following historical events",
+        "rows": [
+          "American Revolution",
+          "French Revolution",
+          "Industrial Revolution"
+        ],
+        "columns": [
+          "No knowledge",
+          "Some knowledge",
+          "Extensive knowledge"
+        ]
+      },
+      {
+        "type": "date",
+        "question": "When did the Cold War begin?",
+        "correctAnswer": "1947-09-02"
+      }
+    ]
+  }
+  )

@@ -12,7 +12,6 @@
     select:        :horizontal_select
   }) do |f| %>
   <%= f.error_notification %>
-
   <div class="form-inputs">
     <%= f.input :subject, collection: ['Math', 'Science', 'History', 'Geography'], selected: 'Math' %>
     <%= f.input :topic %>
@@ -20,10 +19,9 @@
     <%= f.input :difficulty, collection: ['Easy', 'Medium', 'Hard'], selected: 'Medium' %>
     <%= f.input :objectives  %>
     <%= f.input :format, collection: ['Multiple-choice', 'Fill-in-the-blank', 'Open-response'], selected: 'Multiple-choice' %>
-    <%= f.input :length, label: 'Number of questions', collection: 1..5 %>
-  </div>
+    <%= f.input :numberOfQuestions, label: 'Number of questions', collection: 1..5 %>
 
-  <div class="form-actions">
     <%= f.button :submit, class:'btn btn-primary' %>
   </div>
+
 <% end %>

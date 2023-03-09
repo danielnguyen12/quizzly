@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_203229) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_194504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,12 +30,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_203229) do
     t.integer "level"
     t.text "objectives"
     t.string "format"
-    t.integer "length"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "prompt"
     t.jsonb "response"
     t.string "difficulty"
+    t.integer "numberOfQuestions"
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
