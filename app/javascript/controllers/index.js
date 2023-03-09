@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import GoogleOauthController from "./google_oauth_controller"
+application.register("google-oauth", GoogleOauthController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
