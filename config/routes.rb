@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'home#about'
 
-  resources :quizzes
+  resources :quizzes, except: [:edit, :update]
   get 'quizzes', to: 'quizzes#index', as: :user_root
   # resources :ai_stories
 
