@@ -1,5 +1,5 @@
 <div id="<%= dom_id quiz %>">
-  <h2><%= quiz.response['title'] %></h2>
+  <h2><%= quiz.subject %> Quiz: <%= quiz.topic %></h2>
   <p><%= quiz.response['description'] %></p>
   <ol>
     <% quiz.response['questions'].each do |question| %>
@@ -12,7 +12,7 @@
             <% end %>
           </ul>
         <% else %>
-          <input type="text">
+          <input type="text-area">
         <% end %>
       </li>
     <% end %>

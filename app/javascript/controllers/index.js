@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CreateQuizController from "./create_quiz_controller"
+application.register("create-quiz", CreateQuizController)
+
 import GoogleOauthController from "./google_oauth_controller"
 application.register("google-oauth", GoogleOauthController)
 

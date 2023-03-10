@@ -40,16 +40,14 @@ class QuizzesController < ApplicationController
           messages: [
             { role: "system", content: 'You are a quiz generator. Based on user input, return only a string in JSON with this structure (do not include any other extra text):
               {
-                title: "",
-                description: "",
-                questions: [
-                  {
-                    type: "",
-                    question: "",
-                    choices: [""],
-                    correctAnswer: ""
-                  }
-                ]
+                "title": "",
+                "description": "",
+                "questions": [{
+                  "type": "",
+                  "question": "",
+                  "choices": [""],
+                  "correctAnswer": ""
+                }]
               }'},
             { role: "user", content: prompt}
           ]
