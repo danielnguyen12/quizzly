@@ -16,23 +16,7 @@
   <div class="container">
     <div class="row">
       <% @quizzes.each do |quiz| %>
-        <div class="col-md-4">
-          <div class="card box-shadow mb-4">
-            <div class="card-body">
-              <h5 class="card-title">
-              <%= quiz['response']['title'] %>
-              </h5>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Grade <%= quiz.level %></li>
-              <li class="list-group-item">A second item</li>
-              <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-              <%= link_to 'View quiz', quiz, class:'btn btn-outline-primary' %>
-            </div>
-          </div>
-        </div>
+        <%= render 'preview', quiz: quiz %>
       <% end %>
     </div>
   </div>

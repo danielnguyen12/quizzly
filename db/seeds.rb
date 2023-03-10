@@ -9,7 +9,7 @@
 Quiz.create(
   user_id: 1,
   subject: 'Geography',
-  length: 5,
+  numberOfQuestions: 5,
   level: 10,
   response: {
     "title": "Geography Quiz",
@@ -68,7 +68,7 @@ Quiz.create(
 Quiz.create(
   user_id: 1,
   subject: 'Math',
-  length: 5,
+  numberOfQuestions: 5,
   level: 10,
   response: {
     "title": "Mathematics Quiz",
@@ -128,11 +128,11 @@ Quiz.create(
     ]
     }
   )
-  
+
 Quiz.create(
   user_id: 1,
   subject: 'History',
-  length: 5,
+  numberOfQuestions: 5,
   level: 10,
   response: {
     "title": "History Quiz",

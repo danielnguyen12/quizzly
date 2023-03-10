@@ -1,0 +1,17 @@
+<div class="col-md-4">
+  <div class="card box-shadow mb-4">
+    <div class="card-body">
+      <h5 class="card-title">
+      <%= quiz.subject %> Quiz - Grade <%= quiz.level %>
+      </h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= quiz.numberOfQuestions %> questions</li>
+      <li class="list-group-item"><%= quiz.format %></li>
+      <li class="list-group-item">Difficulty: <%= quiz.difficulty %></li>
+    </ul>
+    <div class="card-body">
+      <%= link_to 'View quiz', quiz, class:'btn btn-outline-primary' %>
+    </div>
+  </div>
+</div>
