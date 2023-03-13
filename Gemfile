@@ -83,3 +83,7 @@ gem "omniauth-rails_csrf_protection"
 gem 'omniauth-google-oauth2'
 
 gem 'ruby-openai'
+
+# PDF file generation
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

@@ -11,6 +11,12 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "hello-filename", template: "quizzes/print_pdf", formats: [:html]
+      end
+    end
   end
 
   # GET /quizzes/new
