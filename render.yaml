@@ -4,6 +4,7 @@ databases:
 
 services:
   - type: web
+    plan: free
     name: quizzly
     env: ruby
     buildCommand: "./bin/render-build.sh"
