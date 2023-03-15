@@ -1,4 +1,3 @@
-
 <%= simple_form_for(@quiz, wrapper: :horizontal_form,
   wrapper_mappings: {
     boolean:       :horizontal_boolean,
@@ -21,7 +20,7 @@
     <%= f.input :format, collection: ['Multiple-choice', 'Fill-in-the-blank', 'Open-response'], selected: 'Multiple-choice' %>
     <%= f.input :numberOfQuestions, label: 'Number of questions', collection: 1..5 %>
 
-    <%= f.button :submit, class:'btn btn-primary' %>
+    <%= f.button :submit, class:'btn btn-secondary' %>
   </div>
 
 <% end %>
