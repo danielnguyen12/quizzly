@@ -2,7 +2,7 @@ require 'json'
 
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz, only: %i[ show edit update destroy ]
+  before_action :set_quiz, only: %i[ show update destroy ]
 
   # GET /quizzes or /quizzes.json
   def index
@@ -23,10 +23,6 @@ class QuizzesController < ApplicationController
   def new
     @quiz = Quiz.new
   end
-
-  # GET /quizzes/1/edit
-  # def edit
-  # end
 
   # POST /quizzes or /quizzes.json
   def create
@@ -94,76 +90,6 @@ class QuizzesController < ApplicationController
       redirect_to new_quiz_path, alert: "Failed to generate quiz: #{error_message}"
     end
   end
-
-  # def create
-  #   response_content = '{
-  #     "title": "Geography Quiz",
-  #     "description": "Test your knowledge of world geography",
-  #     "questions": [
-  #     {
-  #     "type": "multiple-choice",
-  #     "question": "What is the capital of France?",
-  #     "choices": [
-  #     "London",
-  #     "Paris",
-  #     "Rome",
-  #     "Berlin"
-  #     ],
-  #     "correctAnswer": "Paris"
-  #     },
-  #     {
-  #     "type": "checkbox",
-  #     "question": "Which of the following are continents?",
-  #     "choices": [
-  #     "Africa",
-  #     "India",
-  #     "South America",
-  #     "Russia",
-  #     "Europe"
-  #     ],
-  #     "correctAnswer": [
-  #     "Africa",
-  #     "South America",
-  #     "Europe"
-  #     ]
-  #     },
-  #     {
-  #     "type": "grid",
-  #     "question": "Rate your familiarity with the following languages",
-  #     "rows": [
-  #     "Spanish",
-  #     "Mandarin",
-  #     "Arabic"
-  #     ],
-  #     "columns": [
-  #     "Never heard of it",
-  #     "Familiar",
-  #     "Fluent"
-  #     ]
-  #     },
-  #     {
-  #     "type": "date",
-  #     "question": "When did World War II begin?",
-  #     "correctAnswer": "1939-09-01"
-  #     }
-  #     ]
-  #     }'
-  #   puts JSON.parse(response_content)
-
-  # end
-
-  # PATCH/PUT /quizzes/1 or /quizzes/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @quiz.update(quiz_params)
-  #       format.html { redirect_to quiz_url(@quiz), notice: "Quiz was successfully updated." }
-  #       format.json { render :show, status: :ok, location: @quiz }
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @quiz.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   # DELETE /quizzes/1 or /quizzes/1.json
   def destroy
